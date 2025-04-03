@@ -1,0 +1,65 @@
+<html>
+  <body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel Script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+      const app = document.getElementById("app")
+
+      function HeaderObjectProperty(props) {
+        return <h1>{props.title}</h1>;
+      }
+
+      function HeaderTemplateLiteral({ title }) {
+        return <h1>{`Cool ${title}`}</h1>;
+      }
+
+      function createTitle(title) {
+        if (title) {
+          return title;
+        } else {
+          return 'Default title';
+        }
+      }
+
+      function HeaderReturnedValueOfAFunction({ title }) {
+        return <h1>{createTitle(title)}</h1>;
+      }
+
+      function HeaderTernaryOperators({ title }) {
+        return <h1>{title ? title : 'Default Title'}</h1>;
+      }
+
+       function HomePage() {
+        return (
+          <div>
+            <HeaderObjectProperty title="ObjectProperty" />
+            <HeaderTemplateLiteral title="TemplateLiteral" />
+            <HeaderReturnedValueOfAFunction title="ReturnedValueOfAFunction" />
+            <HeaderTernaryOperators title="TernaryOperators" />
+          </div>
+        );
+      }
+
+      function HomePageList() {
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+        return (
+          <div>
+            <HeaderTemplateLiteral title="Develop. Preview. Ship." />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(app);
+      root.render(<div><HomePage /><HomePageList /></div>);
+    </script>
+  </body>
+</html>
